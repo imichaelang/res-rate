@@ -428,39 +428,39 @@
     <div class="cards">
       <div class="card">
         <div class="word-range">Under 500 words</div>
-        <div class="price"><sup>RM</sup>300</div>
+        <div class="price"><sup>RM</sup>250</div>
         <div class="price-unit">per page</div>
         <div class="card-divider"></div>
-        <div class="card-desc">Short-form content, social copy, product descriptions, and punchy brand messaging.</div>
+        <div class="card-desc">Short-form articles, blog posts, and brand content written with clarity and purpose.</div>
       </div>
 
       <div class="card featured">
-        <div class="word-range">800 – 1,000 words</div>
-        <div class="price"><sup>RM</sup>500</div>
+        <div class="word-range">500 to 1,000 words</div>
+        <div class="price"><sup>RM</sup>350</div>
         <div class="price-unit">per page</div>
         <div class="card-divider"></div>
-        <div class="card-desc">Blog posts, articles, and web copy with full SEO optimisation and keyword strategy.</div>
+        <div class="card-desc">Mid-length articles and web copy with natural keyword implementation and brand alignment.</div>
       </div>
 
       <div class="card">
-        <div class="word-range">Over 1,000 words</div>
-        <div class="price"><sup>RM</sup>800</div>
-        <div class="price-unit">per page</div>
+        <div class="word-range">Copywriting · Under 150 words</div>
+        <div class="price"><sup>RM</sup>100</div>
+        <div class="price-unit">per piece</div>
         <div class="card-divider"></div>
-        <div class="card-desc">Long-form content, thought leadership pieces, and deep-dive brand storytelling.</div>
+        <div class="card-desc">Taglines, ad copy, product descriptions, social captions, and punchy brand messaging.</div>
       </div>
     </div>
 
-    <!-- TECHNICAL WRITING -->
-    <div class="card-technical">
+    <!-- LONG FORM + TECHNICAL -->
+    <div class="card-technical" style="margin-top: 20px;">
       <div>
-        <div class="tech-label">Specialist Rate</div>
-        <div class="tech-title">Technical Writing</div>
-        <div class="tech-desc">White papers, case studies, technical documentation, and industry-specific content requiring in-depth research.</div>
+        <div class="tech-label">Long-form and Technical Pieces · 1,000 words and above</div>
+        <div class="tech-title">In-depth Writing</div>
+        <div class="tech-desc">Long-form content, thought leadership, white papers, case studies, and technical documentation. Rate is negotiable depending on complexity and length.</div>
       </div>
       <div class="tech-price">
-        <div class="price"><sup>RM</sup>1000</div>
-        <div class="price-unit">per page</div>
+        <div class="price"><sup>RM</sup>800</div>
+        <div class="price-unit" style="text-align:right;">per piece</div>
       </div>
     </div>
   </section>
