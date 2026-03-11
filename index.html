@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Michael Ang · Creative & Brand Strategist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f2ede4;
+      --ink: #0f2233;
+      --warm-gray: #7a8f9e;
+      --accent: #1a6b8a;
+      --light-line: #c9dce8;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: linear-gradient(160deg, #eef4f8 0%, #f2ede4 60%, #e8f0f5 100%);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* GRAIN OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.5;
+    }
+
+    /* LAYOUT */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+
+    /* HEADER */
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--ink);
+      margin-bottom: 72px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    .name-block h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      font-style: italic;
+    }
+
+    .name-block h1 span {
+      display: block;
+      font-style: normal;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .name-block .tagline {
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+    }
+
+    .contact-block {
+      text-align: right;
+    }
+
+    .contact-block a {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+
+    .contact-block a:hover { color: var(--accent); }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 64px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.2s; }
+    section:nth-child(4) { animation-delay: 0.3s; }
+    section:nth-child(5) { animation-delay: 0.4s; }
+    section:nth-child(6) { animation-delay: 0.5s; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--light-line);
+    }
+
+    /* EDUCATION */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .edu-item {
+      padding: 24px;
+      border: 1px solid var(--light-line);
+      position: relative;
+      transition: border-color 0.25s;
+    }
+
+    .edu-item:hover { border-color: var(--accent); }
+
+    .edu-degree {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .edu-school {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      line-height: 1.5;
+    }
+
+    /* WORK */
+    .job {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--light-line);
+    }
+
+    .job:last-child { border-bottom: none; }
+
+    .job-meta { padding-top: 4px; }
+
+    .job-title {
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: var(--serif);
+      font-style: italic;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .job-company {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    .job-clients {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--warm-gray);
+      margin-top: 12px;
+      line-height: 1.6;
+      letter-spacing: 0.04em;
+    }
+
+    .job-content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .job-content ul li {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.65;
+      padding: 5px 0 5px 20px;
+      position: relative;
+      color: #1a2e3d;
+    }
+
+    .job-content ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    /* SKILLS ROW */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 16px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      padding: 5px 12px;
+      border: 1px solid var(--light-line);
+      color: var(--ink);
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* LANGUAGES */
+    .lang-row {
+      display: flex;
+      gap: 48px;
+    }
+
+    .lang-item {
+      text-align: center;
+    }
+
+    .lang-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      font-style: italic;
+      display: block;
+    }
+
+    .lang-level {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--light-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+    }
+
+    .accent-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      .page { padding: 48px 24px 80px; }
+      header { grid-template-columns: 1fr; }
+      .contact-block { text-align: left; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .job { grid-template-columns: 1fr; gap: 16px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .lang-row { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="name-block">
+      <h1>Michael<span>Ang</span></h1>
+      <p class="tagline">Brand Strategy · Content · Digital Media</p>
+    </div>
+    <div class="contact-block">
+      <a href="https://forms.gle/MhUfGFvtgUnFsTwX6" target="_blank" rel="noopener">Contact Me ↗</a>
+      <a href="tel:+60125908920">012-590 8920</a>
+      <a href="https://www.linkedin.com/in/michael-ang-09804120b" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://imichaelang.wordpress.com" target="_blank" rel="noopener">Portfolio ↗</a>
+    </div>
+  </header>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-grid">
+      <div class="edu-item">
+        <div class="edu-degree">BA (Hons) Mass Communications</div>
+        <div class="edu-school">University of Hertfordshire<br>United Kingdom</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">Diploma in Mass Communications</div>
+        <div class="edu-school">INTI International College Penang<br>Malaysia</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK EXPERIENCE -->
+  <section>
+    <div class="section-label">Experience</div>
+
+    <div class="job">
+      <div class="job-meta">
+        <div class="job-title">Brand Executive</div>
+        <div class="job-company">WoFollow</div>
+      </div>
+      <div class="job-content">
+        <ul>
+          <li>Owned end-to-end digital brand strategy, campaign planning, budget oversight, and content direction for FMCG clients</li>
+          <li>Developed and executed digital media content and campaign assets in collaboration with creative teams to ensure brand consistency</li>
+          <li>Led cross-functional coordination with clients, agencies, and distributors to deliver integrated marketing initiatives</li>
+          <li>Managed influencer partnerships and translated performance data into strategic recommendations for brand growth</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">
+        <div class="job-title">Content Specialist</div>
+        <div class="job-company">SearchGuru / NP Digital</div>
+        <div class="job-clients">
+          Clients:<br>
+          Maxis Business · Fujifilm Business Innovation<br>
+          Funding Societies SG · Veolia ANZ · Club Wyndham
+        </div>
+      </div>
+      <div class="job-content">
+        <ul>
+          <li>Crafted brand-led, SEO-informed content across blogs, website copy, and digital platforms</li>
+          <li>Developed content strategies aligning storytelling with marketing objectives and search performance goals</li>
+          <li>Collaborated with SEO specialists to optimize keyword implementation and maximize organic visibility</li>
+          <li>Refined messaging through performance insights and cross-functional collaboration to translate brand values into compelling content experiences</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">
+        <div class="job-title">Content Writer</div>
+        <div class="job-company">iPrima Media</div>
+      </div>
+      <div class="job-content">
+        <ul>
+          <li>Produced brand-aligned articles and blog content to strengthen narrative consistency</li>
+          <li>Delivered high-quality writing under tight timelines while meeting marketing objectives</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">
+        <div class="job-title">Freelance Writer &amp; Subtitler</div>
+        <div class="job-company">Independent</div>
+      </div>
+      <div class="job-content">
+        <ul>
+          <li>Translated and wrote a film script from Mandarin to English, preserving narrative integrity</li>
+          <li>Produced subtitles for Japanese drama content, adapting dialogue for clarity and tone</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section>
+    <div class="section-label">Languages</div>
+    <div class="lang-row">
+      <div class="lang-item">
+        <span class="lang-name">English</span>
+        <span class="lang-level">Fluent</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Chinese</span>
+        <span class="lang-level">Native</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Malay</span>
+        <span class="lang-level">Native</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFTWARE & TOOLS -->
+  <section>
+    <div class="section-label">Software &amp; Tools</div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-group-label">Creative Suite</div>
+        <div class="tag-list">
+          <span class="tag">Photoshop</span>
+          <span class="tag">Illustrator</span>
+          <span class="tag">InDesign</span>
+          <span class="tag">Premiere Pro</span>
+          <span class="tag">Audition</span>
+          <span class="tag">Animate</span>
+          <span class="tag">DaVinci Resolve</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Platforms &amp; Productivity</div>
+        <div class="tag-list">
+          <span class="tag">Microsoft Office</span>
+          <span class="tag">Google Workspace</span>
+          <span class="tag">Meta Business Suite</span>
+          <span class="tag">Aegisub</span>
+          <span class="tag">Subtitle Edit</span>
+          <span class="tag">HandBrake</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="text-align:center; padding: 56px 32px; background: linear-gradient(135deg, #0f2233 0%, #1a6b8a 100%); margin-top: 16px;">
+    <p style="font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #a8c8d8; margin-bottom: 12px;">Interested in my work?</p>
+    <p style="font-family: var(--serif); font-size: 1.6rem; font-weight: 300; font-style: italic; color: #f2ede4; margin-bottom: 28px; line-height: 1.3;">Request my professional portfolio</p>
+    <a href="https://forms.gle/MhUfGFvtgUnFsTwX6" target="_blank" rel="noopener" style="display: inline-block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #f2ede4; border: 1px solid rgba(242,237,228,0.5); padding: 14px 32px; text-decoration: none; margin: 0 8px 12px;">Request Portfolio</a>
+    <a href="ratecard.html" style="display: inline-block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; background: #f2ede4; color: #0f2233; border: 1px solid #f2ede4; padding: 14px 32px; text-decoration: none; margin: 0 8px 12px;">View Rate Card</a>
+  </section>
+
+  <footer>
+    <span>Michael Ang &middot; Resume</span>
+    <span style="width:8px; height:8px; background:#1a6b8a; border-radius:50%; display:inline-block;"></span>
+    <span>Open to opportunities</span>
+  </footer>
+
+</div>
+</body>
+</html>
